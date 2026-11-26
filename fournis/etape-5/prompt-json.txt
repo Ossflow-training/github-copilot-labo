@@ -1,0 +1,5 @@
+Objectif : ajoute une option --json au fichier joint (script/mysystem/mysystem.py).
+Contexte : réutilise les appels platform, ifaddr et psutil existants ; ajoute l'occupation du disque racine (psutil.disk_usage).
+Contraintes : bibliothèque standard uniquement (argparse, json), sortie texte inchangée sans option.
+Format : JSON indenté, clés architecture, machine, node, system, interfaces, memory, disk (total, used, percent).
+Fin : pylint et pytest script/mysystem passent.

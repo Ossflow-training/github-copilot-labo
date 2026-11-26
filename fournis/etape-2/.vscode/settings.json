@@ -1,0 +1,28 @@
+{
+  // Session Local : nécessaire pour les prompts /nom (réglage expérimental, VS Code 1.143)
+  "chat.editor.localAgent.enabled": true,
+  // Complétions partout, sauf dans la prose et les fichiers de secrets
+  "github.copilot.enable": {
+    "*": true,
+    "markdown": false,
+    "plaintext": false,
+    "dotenv": false
+  },
+  // Next Edit Suggestions : propage une modification dans le fichier
+  "github.copilot.nextEditSuggestions.enabled": true,
+  // Agent : demande confirmation après 25 appels au modèle
+  "chat.agent.maxRequests": 25,
+  // Terminal : lint, tests et exécution du script sans confirmation ; commandes risquées toujours soumises
+  "chat.tools.terminal.autoApprove": {
+    "pytest": true,
+    "pylint": true,
+    "python script/mysystem/mysystem.py": true,
+    "/^git (status|diff|log)\\b/": true,
+    "rm": false,
+    "curl": false,
+    "pip install": false,
+    "git push": false
+  },
+  // Convention d'équipe : réponses en français
+  "github.copilot.chat.localeOverride": "fr"
+}

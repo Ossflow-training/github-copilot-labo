@@ -1,0 +1,30 @@
+name: ci
+
+on:
+  push:
+    branches: ['**']               # toutes les branches, jamais sur un tag
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Dépendances
+        run: pip install -r requirements-dev.txt
+      - name: Lint
+        run: |
+          pylint script/mysystem/mysystem.py script/mysystem/alerte_disque.py   # docstrings exigées
+          pylint --disable=missing-docstring script/mysystem/tests
+      - name: Tests
+        run: pytest script/mysystem
+      - name: Exécution
+        run: python script/mysystem/mysystem.py

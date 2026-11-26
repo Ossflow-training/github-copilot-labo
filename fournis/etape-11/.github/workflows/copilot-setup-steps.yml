@@ -1,0 +1,22 @@
+name: "Copilot Setup Steps"
+
+on:
+  workflow_dispatch:
+  push:
+    paths: [.github/workflows/copilot-setup-steps.yml]
+  pull_request:
+    paths: [.github/workflows/copilot-setup-steps.yml]
+
+jobs:
+  copilot-setup-steps:             # ce nom est obligatoire
+    runs-on: ubuntu-latest
+    timeout-minutes: 30            # 59 au maximum
+    permissions:
+      contents: read               # le strict nécessaire : Copilot a son propre jeton
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Dépendances Python
+        run: pip install -r requirements-dev.txt

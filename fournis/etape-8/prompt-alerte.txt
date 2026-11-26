@@ -1,0 +1,9 @@
+Objectif : crée script/mysystem/alerte_disque.py, qui envoie un mail quand l'occupation du disque atteint un seuil.
+Contexte : le script lance mysystem.py --json (fichier joint) et lit disk.percent ; il servira dans une tâche planifiée.
+Contraintes : bibliothèque standard uniquement (subprocess, json, smtplib, email, argparse) ; option --seuil (80 par défaut) ;
+option --dry-run qui affiche le mail sans l'envoyer ; configuration SMTP et adresses par variables d'environnement
+(ALERTE_SMTP_HOTE, ALERTE_SMTP_PORT, ALERTE_SMTP_UTILISATEUR, ALERTE_SMTP_MOT_DE_PASSE, ALERTE_DE, ALERTE_A) ;
+aucun mot de passe dans le code.
+Format : un mail par exécution, sujet « [sysinfo] Disque à N % sur <machine> », corps avec l'occupation, l'espace utilisé et le seuil.
+Fin : tests unitaires dans script/mysystem/tests/test_alerte_disque.py, SMTP et mysystem simulés avec unittest.mock ;
+pylint et pytest script/mysystem passent.
